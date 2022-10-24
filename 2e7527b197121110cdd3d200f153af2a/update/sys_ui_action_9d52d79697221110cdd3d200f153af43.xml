@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name>sysverb_exampleSku</action_name>
+        <active>true</active>
+        <client>true</client>
+        <client_script_v2><![CDATA[function onClick(g_form) {
+
+}]]></client_script_v2>
+        <comments/>
+        <condition/>
+        <form_action>false</form_action>
+        <form_button>false</form_button>
+        <form_button_v2>false</form_button_v2>
+        <form_context_menu>false</form_context_menu>
+        <form_link>false</form_link>
+        <form_menu_button_v2>false</form_menu_button_v2>
+        <form_style/>
+        <format_for_configurable_workspace>false</format_for_configurable_workspace>
+        <hint/>
+        <isolate_script>false</isolate_script>
+        <list_action>true</list_action>
+        <list_banner_button>true</list_banner_button>
+        <list_button>true</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <messages/>
+        <name>CONFIRM Test send out report</name>
+        <onclick>runClientCode()</onclick>
+        <order>300</order>
+        <script><![CDATA[function runClientCode() {
+
+    if (confirmSendOut()) {
+        sendFromServer();
+    }
+
+
+
+
+
+
+    function confirmSendOut() {
+
+		
+		
+        var answer = confirm("Please confirm you want email sent out.");
+        if (answer == true) {
+            alert("YES");
+            return true;
+        } else {
+            alert("NO");
+            return false;
+        }
+    }
+
+    function sendFromServer() {
+        var ga = new GlideAjax('x_673829_service_c.exampleSkuInclude');
+        ga.addParam('sysparm_name', 'sendOutEmail');
+        ga.getXML(emailSent);
+
+        function emailSent(response) {
+            alert("Done?");
+        }
+
+    }
+}]]></script>
+        <show_insert>false</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-10-17 13:36:28</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>9d52d79697221110cdd3d200f153af43</sys_id>
+        <sys_mod_count>17</sys_mod_count>
+        <sys_name>CONFIRM Test send out report</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Service Catalog App" source="x_673829_service_c">2e7527b197121110cdd3d200f153af2a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Service Catalog App">2e7527b197121110cdd3d200f153af2a</sys_scope>
+        <sys_update_name>sys_ui_action_9d52d79697221110cdd3d200f153af43</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-10-17 14:28:56</sys_updated_on>
+        <table>x_673829_service_c_example_skus</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>false</ui16_compatible>
+    </sys_ui_action>
+</record_update>

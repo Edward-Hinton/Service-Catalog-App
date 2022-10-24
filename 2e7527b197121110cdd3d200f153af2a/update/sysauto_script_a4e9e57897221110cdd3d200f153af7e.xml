@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_time>1970-01-01 00:00:00</entered_time>
+        <name>TESTING for populating the group user table</name>
+        <offset/>
+        <offset_type>0</offset_type>
+        <run_as display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2022-10-12 14:09:15</run_start>
+        <run_time>1970-01-01 08:00:00</run_time>
+        <run_type>on_demand</run_type>
+        <script><![CDATA[var opdiv = "ACF";
+var opdiv_pocs = "62826bf03710200044e0bfc8bcbe5df1,a8f98bb0eb32010045e1a5115206fe3a";
+var add_these_pocs_arr = opdiv_pocs.split(",");
+
+// gs.info(poc_arr + ":" + typeof add_these_pocs_arr + ":" + add_these_pocs_arr.length);
+//gs.info(getEncodedQuery(opdiv, add_these_pocs_arr));
+
+
+var gr_group_members = new GlideRecord('sys_user_grmember');
+gr_group_members.addEncodedQuery(getEncodedQuery(opdiv, add_these_pocs_arr));
+gr_group_members.query();
+// add additional check here?
+gs.info(gr_group_members.getRowCount());
+gr_group_members.deleteMultiple(); 
+
+
+
+
+
+
+
+
+
+
+function getEncodedQuery(opdiv, add_these_pocs_arr) {
+    // gets encoded query that finds all records in the specified group and not in the add_these_pocs_arr
+    var encoded_query = "group.name=VMO " + opdiv + " POCs";
+    for (var i = 0; i < add_these_pocs_arr.length; i++) {
+		encoded_query += "^user!=" + add_these_pocs_arr[i];
+    }
+
+    return encoded_query;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// if (gr_group_members.hasNext()) {
+//     // if any records are found
+//     while (gr_group_members.next()) {
+// 			gs.info("DELETE " + gr_group_members.user);
+//     //         var user = gr_group_members.user + "";
+//     //         var index = add_these_pocs_arr.indexOf(user);
+//     //         if (index == -1) {
+//     // 			// if not in arr delete the user from the table
+//     // 			gs.info("DELETE from table: " + user);
+//     // 			gr_group_members.deleteRecord();
+
+//     //         } else {
+//     // 			// if found remove the user from the add_these_pocs_arr (they do not need to be added)
+//     // 			gs.info( user + " is already present in the table. They will be removed from array.");
+//     // 			add_these_pocs_arr.splice(index, 1);
+//     // 		}
+//          }
+
+
+
+// } else {
+//     gs.info("No records returned from query");
+// }]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-10-12 14:09:53</sys_created_on>
+        <sys_id>a4e9e57897221110cdd3d200f153af7e</sys_id>
+        <sys_mod_count>28</sys_mod_count>
+        <sys_name>TESTING for populating the group user table</sys_name>
+        <sys_package display_value="Service Catalog App" source="x_673829_service_c">2e7527b197121110cdd3d200f153af2a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Service Catalog App">2e7527b197121110cdd3d200f153af2a</sys_scope>
+        <sys_update_name>sysauto_script_a4e9e57897221110cdd3d200f153af7e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-10-12 15:20:30</sys_updated_on>
+        <time_zone/>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>
